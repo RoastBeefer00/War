@@ -3,25 +3,26 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.*;
 import java.util.Scanner;
+import java.util.Stack;
 
 public class Deck {
-    ArrayList<Card> cards;
+    Stack<Card> cards;
 
     public Deck() {
-        cards = new ArrayList<>();
+        cards = new Stack<>();
         String[] suits = {"Spades","Clubs","Diamonds","Hearts"};
         for (Integer j = 1; j < 14; j++){
             for (String suit : suits) {
                 Card card = new Card(j,suit);
-                cards.add(card);
+                cards.push(card);
             }
         }
         Card joker = new Card(14,"Joker");
-        cards.add(joker);
-        cards.add(joker);
+        cards.push(joker);
+        cards.push(joker);
     }
 
-    public Deck(ArrayList<Card> cards){
+    public Deck(Stack<Card> cards){
         this.cards = cards;
     }
 
@@ -40,10 +41,7 @@ public class Deck {
         }
     }
 
-    public void DiscardToDeck(Deck discard, Deck deck){
-        for (Card card : discard.cards) {
-            deck.cards.add(card);
-            discard.cards.remove(card);    
-        }
+    public Card getTopCard(){
+        return cards.pop();
     }
 }
